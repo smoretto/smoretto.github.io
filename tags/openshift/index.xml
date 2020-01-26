@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>openshift on Sergio Moretto blog</title>
+    <link>http://www.unseen.it/tags/openshift/</link>
+    <description>Recent content in openshift on Sergio Moretto blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>it</language>
+    <copyright>© 2020 Sergio Moretto</copyright>
+    <lastBuildDate>Sat, 18 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.unseen.it/tags/openshift/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Accesso alla VM di OpenShift CRC</title>
+      <link>http://www.unseen.it/posts/crc-ssh/</link>
+      <pubDate>Sat, 18 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.unseen.it/posts/crc-ssh/</guid>
+      <description>Non è raccomandato ma se si vuole accedere basta eseguire:
+ssh -i ~/.crc/machines/crc/id_rsa core@$(crc ip) </description>
+    </item>
+    
+    <item>
+      <title>Creare nuovi utenti su CRC OpenShift</title>
+      <link>http://www.unseen.it/posts/crc-users/</link>
+      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.unseen.it/posts/crc-users/</guid>
+      <description>Creare il file htpasswd con gli utenti previsti:
+htpasswd -c -B -b htpasswd admin admin1 htpasswd -B -b htpasswd user1 password1 htpasswd -B -b htpasswd user2 password2 Rigenero il secret delle password:
+oc create secret generic htpass-secret --from-file=htpasswd \ -n openshift-config --dry-run -o yaml &amp;gt; htpass-secret.yaml oc replace -f htpass-secret.yaml Attendo che i pod di oauth-openshift ripartano automaticamente:
+oc get pods -n openshift-authentication Abilito l&#39;utente admin come cluster-admin:
+oc adm policy add-cluster-role-to-user cluster-admin admin Cancello l&#39;utenza kubeadmin:</description>
+    </item>
+    
+  </channel>
+</rss>
